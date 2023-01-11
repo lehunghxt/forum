@@ -1,0 +1,23 @@
+<x-guest-layout>
+    <main class="wrapper">
+        <section class="grid grid-cols-4 gap-8 mt-8">
+            {{-- Sidenavbar --}}
+            <x-partials.sidenav />
+
+            <div class="flex flex-col gap-y-4 col-span-12 md:col-span-3">
+                {{-- Alerts --}}
+                <x-alerts.main />
+                <small class="text-xs text-gray-400"><a href="/" class="font-bold">Threads</a>> <a href="{{$category->slug}}">{{ $category->name() }}</a> </small>
+
+                @foreach ($threads as $thread)
+                <x-thread :thread="$thread" />
+                @endforeach
+
+                {{-- Pagination --}}
+                <div class="mt-8">
+                    {{ $threads->render() }}
+                </div>
+            </div>
+        </section>
+    </main>
+</x-guest-layout>
